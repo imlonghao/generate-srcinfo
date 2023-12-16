@@ -9,7 +9,7 @@ echo "workdir: $GITHUB_WORKSPACE"
 
 ls -al /workspace/imlonghao/aur
 
-REPOS=$(git diff --dirstat=files,0 HEAD~1 | sed 's/^[ 0-9.]\+% //g' | sed 's/\/$//g')
+REPOS=$(sudo git diff --dirstat=files,0 HEAD~1 | sed 's/^[ 0-9.]\+% //g' | sed 's/\/$//g')
 DIRECTORY=$(pwd)
 
 for REPO in $REPOS
