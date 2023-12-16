@@ -10,5 +10,6 @@ DIRECTORY=$(pwd)
 for REPO in $REPOS
 do
     cd $DIRECTORY/$REPO/
-    sudo makepkg --pr | sudo tee .SRCINFO
+    sudo chmod 777 $DIRECTORY/$REPO/
+    makepkg --pr | sudo tee .SRCINFO
 done
