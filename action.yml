@@ -4,17 +4,6 @@ branding:
   icon: package
   color: blue
 
-inputs:
-  path:
-    description: 'The path to the directory containing the PKGBUILD'
-    required: true
-
-outputs:
-  pkgfile:
-    description: 'The path to the built package'
-
 runs:
   using: 'docker'
   image: 'Dockerfile'
-  args:
-    - ${{ inputs.path }}

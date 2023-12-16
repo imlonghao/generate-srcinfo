@@ -2,23 +2,11 @@
 
 set -eo pipefail
 
-path="$1"
+REPOS=$(git diff --dirstat=files,0 HEAD~1 | sed 's/^[ 0-9.]\+% //g' | sed 's/\/$//g')
+DIRECTORY=$(pwd)
 
-if [[ ! -d "$path" ]]; then
-    echo "::error ::Invalid path: [$path]"
-    exit 1
-fi
-
-abspath="$(realpath "$path")"
-
-echo "::group::Move files to $HOME"
-HOME=/home/build
-cd "$HOME"
-cp -r "$abspath" .
-cd "$(basename "$abspath")"
-echo "::endgroup::"
-
-echo "::group::Generate .SRCINFO"
-makepkg --printsrcinfo > .SRCINFO
-sudo mv .SRCINFO "$abspath"
-echo "::endgroup::"
+for REPO in $REPOS
+do
+    cd $DIRECTORY/$REPO/
+    makepkg --pr > .SRCINFO
+done
