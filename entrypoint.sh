@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+set -x
 set -eo pipefail
 
 cd "$GITHUB_WORKSPACE"
