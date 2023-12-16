@@ -1,5 +1,5 @@
 name: 'PKGBUILD Action'
-description: 'Make the package in a minimal environment and generate .SRCINFO.'
+description: 'Generate .SRCINFO.'
 branding:
   icon: package
   color: blue
@@ -8,9 +8,6 @@ inputs:
   path:
     description: 'The path to the directory containing the PKGBUILD'
     required: true
-  archive:
-    description: 'Use Arch Linux Archive on the specified date.'
-    required: false
 
 outputs:
   pkgfile:
@@ -21,4 +18,3 @@ runs:
   image: 'Dockerfile'
   args:
     - ${{ inputs.path }}
-    - ${{ inputs.archive }}
